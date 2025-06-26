@@ -76,16 +76,16 @@ jobs:
           ref: master
           path: theos
           submodules: recursive
-      
+
       - name: Caching SDK
         id: SDK
         uses: actions/cache@v4.1.1
-        env:
-          cache-name: iOS-16.5-SDK
         with:
           path: theos/sdks/
-          key: ${{ env.cache-name }}
-      
+          key: iOS-16.5-SDK
+          restore-keys: |
+            iOS-16.5-SDK
+     
       - name: Download iOS 16.5 SDK
         if: steps.SDK.outputs.cache-hit != 'true'
         run: |
